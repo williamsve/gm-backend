@@ -13,6 +13,7 @@ bcrypt==4.3.0
 python-jose==3.5.0
 python-multipart==0.0.20
 slowapi==0.1.9
+psycopg2-binary==2.9.10
 sqlalchemy==2.0.41
 starlette==1.0.0
 typing-inspection==0.4.2
