@@ -27,61 +27,6 @@ cd api
 pip install -r requirements.txt
 ```
 
-### Configurar variables de entorno
-
-Editar el archivo `.env` con tus credenciales:
-
-```env
-SECRET_KEY=tu-secreto-seguro
-DATABASE_URL=postgresql://usuario:password@host:puerto/database
-ALLOWED_ORIGINS=http://localhost:3000
-```
-
-## 🏃‍♂️ Ejecutar
-
-### Desarrollo
-
-```bash
-cd api
-uvicorn main:app --reload --host 0.0.0.0 --port 8000
-```
-
-### Producción
-
-```bash
-cd api
-uvicorn main:app --host 0.0.0.0 --port 8000
-```
-
-## 📚 Documentación
-
-Una vez ejecutando la API, acceder a:
-
-- **Swagger UI**: http://localhost:8000/docs
-- **ReDoc**: http://localhost:8000/redoc
-- **OpenAPI JSON**: http://localhost:8000/openapi.json
-
-## 🔐 Autenticación
-
-### Credenciales por defecto
-
-- **Usuario**: `admin`
-- **Contraseña**: `admin123`
-
-### Obtener token
-
-```bash
-curl -X POST "http://localhost:8000/api/auth/login" \
-  -H "Content-Type: application/x-www-form-urlencoded" \
-  -d "username=admin&password=admin123"
-```
-
-### Usar token
-
-```bash
-curl -X GET "http://localhost:8000/api/auth/me" \
-  -H "Authorization: Bearer TU_TOKEN_AQUI"
-```
 
 ## 📁 Estructura del proyecto
 
@@ -111,34 +56,6 @@ api/
 │       └── auth.py        # Utilidades de autenticación JWT
 └── README.md
 ```
-
-## 🔌 Endpoints
-
-### Autenticación
-
-| Método | Endpoint | Descripción | Autenticación |
-|--------|----------|-------------|---------------|
-| POST | `/api/auth/login` | Iniciar sesión (form-data) | ❌ |
-| POST | `/api/auth/login/json` | Iniciar sesión (JSON) | ❌ |
-| GET | `/api/auth/me` | Obtener usuario actual | ✅ |
-| POST | `/api/auth/register` | Registrar usuario | ✅ Admin |
-| POST | `/api/auth/logout` | Cerrar sesión | ❌ |
-
-### Servicios
-
-| Método | Endpoint | Descripción | Autenticación |
-|--------|----------|-------------|---------------|
-| GET | `/api/servicios/` | Listar servicios | ❌ |
-| GET | `/api/servicios/{id}` | Obtener servicio | ❌ |
-| POST | `/api/servicios/` | Crear servicio | ✅ Admin |
-| PUT | `/api/servicios/{id}` | Actualizar servicio | ✅ Admin |
-| DELETE | `/api/servicios/{id}` | Eliminar servicio | ✅ Admin |
-
-### Query Parameters (GET /api/servicios/)
-
-- `skip`: Número de registros a saltar (default: 0)
-- `limit`: Número máximo de registros (default: 100, max: 1000)
-- `search`: Buscar por nombre o descripción
 
 ## 🔒 Seguridad
 
