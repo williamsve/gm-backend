@@ -34,7 +34,7 @@ class Settings(BaseSettings):
     
     # Servidor
     host: str = "0.0.0.0"
-    port: int = 8000
+    port: int = int(os.getenv("PORT", "8000"))
     
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
