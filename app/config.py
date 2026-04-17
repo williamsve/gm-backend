@@ -34,7 +34,7 @@ class Settings(BaseSettings):
     
     # Servidor
     host: str = "0.0.0.0"
-    port: int = int(os.getenv("PORT", "8000"))
+    port: int = 8000
     
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
@@ -44,6 +44,10 @@ class Settings(BaseSettings):
                 self.allowed_origins = json.loads(self.allowed_origins)
             except:
                 self.allowed_origins = [self.allowed_origins]
+        
+        # Leer PORT desde el entorno en tiempo de instanciación, no de definición de clase
+        if "PORT" in os.environ:
+            self.port = int(os.environ["PORT"])
         
         # Validar que DATABASE_URL esté configurado en producción
         if not self.database_url and not self.debug:
