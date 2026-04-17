@@ -2,7 +2,6 @@ import os
 import json
 import secrets
 from pydantic_settings import BaseSettings
-from functools import lru_cache
 
 
 def generate_secret_key() -> str:
@@ -58,6 +57,5 @@ class Settings(BaseSettings):
         env_file_encoding = "utf-8"
 
 
-@lru_cache()
 def get_settings():
     return Settings()
